@@ -1,6 +1,25 @@
 from player import Player
 from card import Card
 import random
+import pygame, sys
+
+
+#Loading Images for cards
+pygame.init()
+#twoClub = pygame.image.load('images/2C.png')
+display = pygame.display.set_mode((300,300))
+
+
+#def pyGamePlay():
+   # while True:
+       # pygame.event.pump()
+        #for event in pygame.event.get():
+        #    if event.type == quit:
+        #        pygame.quit()
+        #        sys.exit()
+        #pygame.draw.rect(display,(0,255,0),(100,50,20,20))
+        #pygame.display.update()
+        #playGame()
 
 
 def playGame():
@@ -27,9 +46,10 @@ def playGame():
         currentCardCount -= 1
         for player in playerList:
             hand = player.returnHand()
+            hand = sorted(hand,key=lambda card: (card.getSuit(),card.getValue()))
             print(player.name)
             for card in hand:
-                print(card.getValue()," + ",card.getSuit())
+                print(card.getValue(),card.getSuit())
             print("")
             player.clearHand()
         print("-------------------------------------------------------------")
